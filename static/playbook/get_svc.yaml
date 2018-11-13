@@ -1,0 +1,10 @@
+---
+- hosts: Lab409-master
+  remote_user: root
+  tasks:
+  - name: Get existing Services
+    k8s_facts:
+      api_version: v1
+      kind: Service
+      namespace: sock-shop
+    register: service_list
