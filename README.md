@@ -42,13 +42,9 @@ How to:
 
 5. Now you can use Flask web api to control ansible 
 
-  demo: run a playbook to fetch a list of all k8s service objects
-
-  try: `$ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_svc`
-
 ---
 
-###### demo: run a playbook to fetch a list of all k8s service objects
+#### demo: run a playbook to fetch a list of all k8s service objects
 
 try: 
 
