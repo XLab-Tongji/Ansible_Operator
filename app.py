@@ -7,6 +7,7 @@ from flask import request
 from flask_httpauth import HTTPBasicAuth
 
 from services.k8s_observer import K8sObserver
+from utils.config import config
 
 auth = HTTPBasicAuth()
 app = Flask(__name__)
@@ -14,8 +15,8 @@ app = Flask(__name__)
 
 @auth.get_password
 def get_password(username):
-    if username == 'lab':
-        return '409'
+    if username == config['user_name']:
+        return config['password']
     return None
 
 
