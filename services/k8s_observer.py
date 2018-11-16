@@ -4,6 +4,7 @@ import sys
 import os
 sys.path.append('../')
 from utils.ansible_runner import Runner
+from view_model.k8s_repository import K8sRepository
 
 
 class K8sObserver(object):
@@ -16,13 +17,41 @@ class K8sObserver(object):
         return os.path.join(APP_ROOT, 'static', 'playbook', name)
 
     @staticmethod
-    def get_svc():
+    def get_namespace():
         r = Runner()
-        r.run_playbook([K8sObserver.fetch_playbook_path('get_svc.yaml')])
-        return r.get_playbook_result()
+        r.run_playbook(
+            playbooks=[K8sObserver.fetch_playbook_path('get_namespace.yaml')],
+        )
+        result = r.get_playbook_result()
+        return K8sRepository.create_k8s_namespace_view_model(result)
 
     @staticmethod
-    def get_pods():
+    def get_svc(namespace):
         r = Runner()
-        r.run_playbook([K8sObserver.fetch_playbook_path('get_pod.yaml')])
-        return r.get_playbook_result()
+        r.run_playbook(
+            playbooks=[K8sObserver.fetch_playbook_path('get_svc.yaml')],
+            extra_vars={'namespace': namespace}
+        )
+        result = r.get_playbook_result()
+        return K8sRepository.create_k8s_svc_view_model(result)
+
+    @staticmethod
+    def get_deployment(namespace):
+        r = Runner()
+        r.run_playbook(
+            playbooks=[K8sObserver.fetch_playbook_path('get_deployment.yaml')],
+            extra_vars={'namespace': namespace}
+        )
+        result = r.get_playbook_result()
+        return K8sRepository.create_k8s_deployment_view_model(result)
+
+    @staticmethod
+    def get_pods(namespace):
+        r = Runner()
+        r.run_playbook(
+            playbooks=[K8sObserver.fetch_playbook_path('get_pod.yaml')],
+            extra_vars={'namespace': namespace}
+        )
+        result = r.get_playbook_result()
+        return K8sRepository.create_k8s_pods_view_model(result)
+
