@@ -1,0 +1,9 @@
+---
+- hosts: Lab409-master
+  remote_user: root
+  tasks:
+  - name: Get existing namespaces
+    k8s_facts:
+      api_version: v1
+      kind: namespace
+    register: namespace_list
