@@ -81,13 +81,13 @@ No parameters
 | 200 | Successful response |  |
 | 404 | Not found           | *error*: string   |
 
-#### Request Sample (示例请求)
+#### Request Sample
 
 ```bash
 $ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_namespace
 ```
 
-#### Response Sample (示例结果)
+#### Response Sample
 
 ```json
 {
@@ -144,13 +144,13 @@ No parameters
 | 403  | Unauthorized access | *error*: string   |
 | 404  | Not found           | *error*: string   |
 
-#### Request Sample (示例请求)
+#### Request Sample
 
 ```bash
 $ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_svc/sock-shop
 ```
 
-#### Response Sample (示例结果)
+#### Response Sample
 
 ```json
 {
@@ -242,13 +242,13 @@ No parameters
 | 403  | Unauthorized access | *error*: string   |
 | 404  | Not found           | *error*: string   |
 
-#### Request Sample (示例请求)
+#### Request Sample
 
 ```bash
 $ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_deployment/sock-shop
 ```
 
-#### Response Sample (示例结果)
+#### Response Sample
 
 ```json
 {
@@ -426,13 +426,13 @@ No parameters
 | 403  | Unauthorized access | **error**: string   |
 | 404  | Not found           | *error*: string   |
 
-#### Request Sample (示例请求)
+#### Request Sample
 
 ```bash
 $ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_pods/sock-shop
 ```
 
-#### Response Sample (示例结果)
+#### Response Sample
 
 ```json
 {
