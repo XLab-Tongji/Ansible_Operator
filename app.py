@@ -21,31 +21,37 @@ def get_password(username):
 
 
 @auth.error_handler
+@auth.login_required
 def unauthorized():
     return make_response(jsonify({'error': 'Unauthorized access'}), 403)
 
 
 @app.errorhandler(404)
+@auth.login_required
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @app.route('/tool/api/v1.0/get_namespace', methods=['GET'])
+@auth.login_required
 def get_namespace():
     return jsonify(K8sObserver.get_namespace())
 
 
 @app.route('/tool/api/v1.0/get_svc/<namespace>', methods=['GET'])
+@auth.login_required
 def get_svc(namespace):
     return jsonify(K8sObserver.get_svc(namespace=namespace.encode('raw_unicode_escape')))
 
 
 @app.route('/tool/api/v1.0/get_deployment/<namespace>', methods=['GET'])
+@auth.login_required
 def get_deployment(namespace):
     return jsonify(K8sObserver.get_deployment(namespace=namespace.encode('raw_unicode_escape')))
 
 
 @app.route('/tool/api/v1.0/get_pods/<namespace>', methods=['GET'])
+@auth.login_required
 def get_pods(namespace):
     return jsonify(K8sObserver.get_pods(namespace))
 
