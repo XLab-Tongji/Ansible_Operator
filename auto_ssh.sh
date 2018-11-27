@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/expect
 set timeout 10
 set username [lindex $argv 0]
 set password [lindex $argv 1]
