@@ -1,6 +1,6 @@
 FROM ansible/ansible:ubuntu1404
 
-RUN apt-get update \
+RUN apt-get update -y \
     && apt-get install -y tcl tk expect \
     && git clone https://github.com/XLab-Tongji/Anisible_Operator.git \
     && chmod 777 ~/Anisible_Operator/auto_ssh.sh \
