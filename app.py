@@ -21,7 +21,6 @@ def get_password(username):
 
 
 @auth.error_handler
-@auth.login_required
 def unauthorized():
     return make_response(jsonify({'error': 'Unauthorized access'}), 403)
 
