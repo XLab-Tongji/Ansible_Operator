@@ -8,6 +8,7 @@ from flask_httpauth import HTTPBasicAuth
 
 from services.k8s_observer import K8sObserver
 from services.prometheus_observer import PrometheusObserver
+from services.fault_injector import FaultInjector
 from utils.config import Config
 
 auth = HTTPBasicAuth()
@@ -63,9 +64,30 @@ def stream():
         abort(400)
     dto = {
         'from': request.json['from'],
-        'to': request.json['to'],
+        'to': request.json['to']
     }
     return jsonify(PrometheusObserver.run(dto))
+
+
+@app.route('/tool/api/v1.0/stress/inject', methods=['POST'])
+@auth.login_required
+def inject():
+    if not request.json or not 'type' in request.json \
+            or not 'duration' in request.json \
+            or not 'host' in request.json:
+        abort(400)
+    dto = {
+        'type': request.json['type'],
+        'inject_duration': request.json['duration'],
+        'host': request.json['host']
+    }
+    if dto['type'] == 'cpu':
+        return jsonify(FaultInjector.inject_cpu(dto))
+    elif dto['type'] == 'mem':
+        return jsonify(FaultInjector.inject_mem(dto))
+    else:
+        return jsonify(FaultInjector.inject_io(dto))
+
 
 # ================
 #
