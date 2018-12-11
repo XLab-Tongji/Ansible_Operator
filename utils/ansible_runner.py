@@ -10,7 +10,7 @@ from ansible.plugins.callback import CallbackBase
 from ansible.playbook.play import Play
 from ansible.executor.task_queue_manager import TaskQueueManager
 
-from config import config
+from config import Config
 
 
 class PlaybookResultsCallback(CallbackBase):
@@ -88,14 +88,14 @@ class Runner(object):
         # 初始化需要的对象
         self.options = Options(
                        connection='ssh',
-                       remote_user=config['remote_user'] if config['remote_user'] else 'root',
+                       remote_user=Config.remote_user if Config.remote_user else 'root',
                        ack_pass=None,
                        sudo_user=None,
                        sudo=None,
                        forks=5,
                        ask_sudo_pass=False,
                        verbosity=5,
-                       module_path=config['module_path'] if config['module_path'] else None,
+                       module_path=Config.module_path if Config.module_path else None,
                        become=None,
                        become_method=None,
                        become_user=None,

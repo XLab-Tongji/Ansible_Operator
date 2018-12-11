@@ -7,7 +7,8 @@ from flask import request
 from flask_httpauth import HTTPBasicAuth
 
 from services.k8s_observer import K8sObserver
-from utils.config import config
+from services.prometheus_observer import PrometheusObserver
+from utils.config import Config
 
 auth = HTTPBasicAuth()
 app = Flask(__name__)
@@ -15,8 +16,8 @@ app = Flask(__name__)
 
 @auth.get_password
 def get_password(username):
-    if username == config['user_name']:
-        return config['password']
+    if username == Config.user_name:
+        return Config.password
     return None
 
 
@@ -53,6 +54,18 @@ def get_deployment(namespace):
 @auth.login_required
 def get_pods(namespace):
     return jsonify(K8sObserver.get_pods(namespace))
+
+
+@app.route('/tool/api/v1.0/prometheus/result/stream', methods=['POST'])
+@auth.login_required
+def stream():
+    if not request.json or not 'from' in request.json or not 'to' in request.json:
+        abort(400)
+    dto = {
+        'from': request.json['from'],
+        'to': request.json['to'],
+    }
+    return jsonify(PrometheusObserver.run(dto))
 
 # ================
 #
