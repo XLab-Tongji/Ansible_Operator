@@ -52,7 +52,7 @@ The project dir tree:
 5. Now you can use Flask web api to control ansible 
 
 ```bash
-$ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_namespace
+$ curl -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/get_namespace
 ```
 ## Interface Specifications
 
@@ -84,7 +84,7 @@ No parameters
 #### Request Sample
 
 ```bash
-$ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_namespace
+$ curl -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/get_namespace
 ```
 
 #### Response Sample
@@ -147,7 +147,7 @@ No parameters
 #### Request Sample
 
 ```bash
-$ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_svc/sock-shop
+$ curl -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/get_svc/sock-shop
 ```
 
 #### Response Sample
@@ -245,7 +245,7 @@ No parameters
 #### Request Sample
 
 ```bash
-$ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_deployment/sock-shop
+$ curl -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/get_deployment/sock-shop
 ```
 
 #### Response Sample
@@ -429,7 +429,7 @@ No parameters
 #### Request Sample
 
 ```bash
-$ curl -u lab:409 -i http://localhost:5000/tool/api/v1.0/get_pods/sock-shop
+$ curl -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/get_pods/sock-shop
 ```
 
 #### Response Sample
