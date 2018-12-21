@@ -61,12 +61,8 @@ class PrometheusObserver(object):
     @staticmethod
     def run(dto):
         # 处理开始时间和结束时间
-        if Config.PERIOD != '':
-            end_time = int(time.time())
-            start_time = end_time - 60 * Config.PERIOD
-        else:
-            end_time = datetime.datetime.fromtimestamp(dto['from'])
-            start_time = datetime.datetime.fromtimestamp(dto['to'])
+        end_time = datetime.datetime.fromtimestamp(dto['from'])
+        start_time = datetime.datetime.fromtimestamp(dto['to'])
 
         metricnames1 = PrometheusObserver.build_entity_metrics(Config.QUERY_CONFIG1)
         csvset1 = PrometheusObserver.query_entity_metric_values(
