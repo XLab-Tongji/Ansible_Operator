@@ -89,8 +89,8 @@ class PrometheusObserver(object):
         )
 
         datasetHeader = []
-        datasetHeader.append(metricnames1)
-        datasetHeader.append(metricnames2)
+        datasetHeader += metricnames1
+        datasetHeader += metricnames2
 
         # 生成数据集
         logging.info("Querying metric values succeeded, rows of data: %s", len(csvset1))
