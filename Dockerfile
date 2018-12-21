@@ -7,7 +7,7 @@ RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
     && sudo apt-get update \
     && apt-get install -y --no-install-recommends tcl tk expect \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone https://github.com/Moonlor/AnsibleOperator.git ~/Ansible_Operator \
+    && git clone https://github.com/XLab-Tongji/Ansible_Operator.git ~/Ansible_Operator \
     && chmod 777 ~/Ansible_Operator/auto_ssh.sh \
     && rm /etc/ansible/hosts \
     && cp ~/Ansible_Operator/hosts /etc/ansible/ \
