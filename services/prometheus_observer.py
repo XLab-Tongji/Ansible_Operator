@@ -72,7 +72,7 @@ class PrometheusObserver(object):
     def run(dto):
         # 处理开始时间和结束时间
         end_time = PrometheusObserver.datetime_timestamp(dto['from'])
-        start_time = PrometheusObserver.datetime_timestampdto(['to'])
+        start_time = PrometheusObserver.datetime_timestamp(dto['to'])
 
         metricnames1 = PrometheusObserver.build_entity_metrics(Config.QUERY_CONFIG1)
         csvset1 = PrometheusObserver.query_entity_metric_values(
