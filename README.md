@@ -543,6 +543,185 @@ $ curl -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/get_pods/sock-shop
 
 ------
 
+### */tool/api/v1.0/prometheus/result/stream*   
+
+#### Description
+
+Get prometheus monitoring data
+
+|                |            |
+| -------------- | ---------- |
+| Request Method | Post       |
+| Authorization  | Basic Auth |
+
+#### Parameters
+
+| Description           | Schema          |
+| --------------------- | --------------- |
+| Monitoring start time | *from* : string |
+| Monitoring end time   | *to* : string   |
+
+#### Parameters Sample
+
+```json
+{
+	"from": "2018-11-20 19:34:12",
+	"to": "2018-11-20 20:34:12"
+}
+```
+
+#### Responses
+
+| Code | Description         | Schema            |
+| :--: | :------------------ | :---------------- |
+| 200  | Successful response | *name* : string   |
+| 403  | Unauthorized access | **error**: string |
+| 404  | Not found           | *error*: string   |
+
+#### Request Sample
+
+```bash
+$ curl -H "Content-Type:application/json" -X POST -d '{
+	"from": "2018-11-20 19:34:12",
+	"to": "2018-11-20 20:34:12"
+}' -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/prometheus/result/stream
+```
+
+#### Response Sample
+
+```json
+{
+    "data_body": [],
+    "data_title": [
+        "timestamp",
+        "container/docker-compose_carts-db_1/container_fs_io_current",
+        "container/docker-compose_carts-db_1/container_fs_usage_bytes",
+        "container/docker-compose_kibana_1/memory_usage",
+        "container/docker-compose_kibana_1/network_receive_bytes",
+        "container/docker-compose_kibana_1/network_transmit_bytes",
+        "container/docker-compose_kibana_1/cpu_usage_percent",
+        "container/docker-compose_kibana_1/memory_cache_usage_bytes",
+        "container/docker-compose_orders-db_1/container_fs_io_current",
+        "container/docker-compose_orders-db_1/container_fs_usage_bytes",
+        "container/docker-compose_orders-db_1/memory_usage",
+        "container/docker-compose_orders-db_1/network_receive_bytes",
+        "container/docker-compose_orders-db_1/network_transmit_bytes",
+        "container/docker-compose_orders-db_1/cpu_usage_percent",
+        "container/docker-compose_orders-db_1/memory_cache_usage_bytes",
+        "container/docker-compose_orders_1/container_fs_io_current",
+        "container/docker-compose_orders_1/container_fs_usage_bytes",
+        "container/docker-compose_user_1/memory_usage",
+        "container/docker-compose_user_1/network_receive_bytes",
+        "container/docker-compose_user_1/network_transmit_bytes",
+        "container/docker-compose_user_1/cpu_usage_percent",
+        "container/docker-compose_user_1/memory_cache_usage_bytes",
+        "service/carts:80/request_duration_seconds_count",
+        "service/carts:80/request_duration_seconds_bucket",
+        "service/catalogue:80/request_duration_seconds_count",
+        "service/catalogue:80/request_duration_seconds_bucket",
+        "service/edge-router:80/request_duration_seconds_count",
+        "service/edge-router:80/request_duration_seconds_bucket",
+        "service/orders:80/request_duration_seconds_count",
+        "service/orders:80/request_duration_seconds_bucket",
+        "service/payment:80/request_duration_seconds_count",
+        "service/payment:80/request_duration_seconds_bucket",
+        "service/shipping:80/request_duration_seconds_count",
+        "service/shipping:80/request_duration_seconds_bucket",
+        "service/user:80/request_duration_seconds_count",
+        "service/user:80/request_duration_seconds_bucket"
+    ]
+}
+```
+
+------
+
+### */tool/api/v1.0/stress/inject*  
+
+#### Description
+
+Execute fault injection
+
+|                |            |
+| -------------- | ---------- |
+| Request Method | Post       |
+| Authorization  | Basic Auth |
+
+#### Parameters
+
+| Description                 | Schema              |
+| --------------------------- | ------------------- |
+| Fault injection type        | *type* : string     |
+| Fault injection duration    | *duration* : string |
+| Fault injection target host | *host* : string     |
+
+#### Parameters Sample
+
+```json
+{
+	"type": "cpu",
+	"duration": "60",
+	"host": "Lab409-master"
+}
+```
+
+#### Responses
+
+| Code | Description         | Schema            |
+| :--: | :------------------ | :---------------- |
+| 200  | Successful response | *name* : string   |
+| 403  | Unauthorized access | **error**: string |
+| 404  | Not found           | *error*: string   |
+
+#### Request Sample
+
+```bash
+$ curl -H "Content-Type:application/json" -X POST -d '{
+	"type": "cpu",
+	"duration": "60",
+	"host": "Lab409-master"
+}' -u lab:409 -i http://10.60.38.182:5525/tool/api/v1.0/stress/inject
+```
+
+#### Response Sample
+
+```json
+{
+    "failed": {},
+    "success": {
+        "10_60_38_181": {
+            "_ansible_no_log": false,
+            "_ansible_parsed": true,
+            "changed": true,
+            "cmd": "stress -c 1 -t 60 > /dev/null 2>&1",
+            "delta": "0:01:00.004130",
+            "end": "2018-12-25 16:40:51.740972",
+            "invocation": {
+                "module_args": {
+                    "_raw_params": "stress -c 1 -t 60 > /dev/null 2>&1",
+                    "_uses_shell": true,
+                    "argv": null,
+                    "chdir": null,
+                    "creates": null,
+                    "executable": null,
+                    "removes": null,
+                    "stdin": null,
+                    "warn": true
+                }
+            },
+            "rc": 0,
+            "start": "2018-12-25 16:39:51.736842",
+            "stderr": "",
+            "stderr_lines": [],
+            "stdout": "",
+            "stdout_lines": []
+        }
+    },
+    "unreachable": {}
+}
+```
+
+------
+
 
 
 
