@@ -47,7 +47,7 @@ class PrometheusObserver(object):
                             # print(results)
                             csvset[value[0]] = []
                             for count in range(index):
-                                csvset[value[0]].append('null');
+                                csvset[value[0]].append('null')
                             csvset[value[0]].append(value[1])
                 for timestamp in csvset.keys():
                     if len(csvset[timestamp]) <= index:

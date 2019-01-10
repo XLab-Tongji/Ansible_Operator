@@ -70,7 +70,6 @@ def stream():
 
 
 @app.route('/tool/api/v1.0/stress/inject', methods=['POST'])
-@auth.login_required
 def inject():
     if not request.json or not 'type' in request.json \
             or not 'duration' in request.json \
