@@ -12,14 +12,14 @@ class Config(object):
     # prometheus config
 
     PROMETHEUS_CONFIG1 = {
-        'url': 'http://10.60.38.181:13002',
+        'url': 'http://10.60.38.181:2337',
         'auth_user': 'admin',
         'auth_password': 'admin',
         'query_api': '/api/v1/query_range'
     }
 
     PROMETHEUS_CONFIG2 = {
-        'url': 'http://10.60.38.181:13001',
+        'url': 'http://10.60.38.181:2337',
         'auth_user': 'admin',
         'auth_password': 'admin',
         'query_api': '/api/v1/query_range'
@@ -61,7 +61,7 @@ class Config(object):
 
     QUERY_CONFIG2 = {
         'entity_type': 'service',
-        'entity_list': ['carts:80', 'catalogue:80', 'edge-router:80', 'orders:80', 'payment:80', 'shipping:80', 'user:80'],
+        'entity_list': ['carts', 'catalogue', 'edge-router', 'orders', 'payment', 'shipping', 'user'],
         'metric_list': [
             'request_duration_seconds_count',
             'request_duration_seconds_bucket'
