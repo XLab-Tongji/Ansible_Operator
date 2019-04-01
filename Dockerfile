@@ -1,20 +1,23 @@
-FROM ansible/ansible:ubuntu1404
+FROM ansible/ansible:ubuntu1604
 
 
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list \
-    && apt-get clean \
-    && echo "deb http://archive.ubuntu.com/ubuntu trusty main universe restricted multiverse" > /etc/apt/sources.list \
-    && sudo apt-get update \
-    && apt-get install -y --no-install-recommends tcl tk expect \
-    && rm -rf /var/lib/apt/lists/* \
+RUN sudo apt-get update \
+    && apt-get install -y --no-install-recommends --fix-missing tcl tk expect \
     && git clone https://github.com/XLab-Tongji/Ansible_Operator.git ~/Ansible_Operator \
     && chmod 777 ~/Ansible_Operator/auto_ssh.sh \
     && rm /etc/ansible/hosts \
     && cp ~/Ansible_Operator/hosts /etc/ansible/ \
     && pip install --upgrade pip \
-    && pip install ansible \
-    && pip install flask \
-    && pip install flask_httpauth
+    && pip2 install ansible \
+    && pip2 install flask \
+    && pip2 install flask_httpauth \
+    && pip2 install requests \
+    && git -C /root/Ansible_Operator pull \
+    && /usr/bin/expect /root/Ansible_Operator/auto_ssh.sh root 123456 10.60.38.181 2331\
+    && chmod 777 ~/Ansible_Operator/run.sh
+
+
+CMD ["sh", "/root/Ansible_Operator/run.sh"]
 
 
 
