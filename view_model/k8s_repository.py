@@ -20,6 +20,7 @@ class K8sRepository(object):
         except:
             success = {}
 
+        result['detail'] = result['success']
         result['success'] = success
         return result
 
@@ -40,6 +41,7 @@ class K8sRepository(object):
         except:
             success = {}
 
+        result['detail'] = result['success']
         result['success'] = success
         return result
 
@@ -60,6 +62,7 @@ class K8sRepository(object):
         except:
             success = {}
 
+        result['detail'] = result['success']
         result['success'] = success
         return result
 
@@ -82,5 +85,6 @@ class K8sRepository(object):
         except:
             success = {}
 
+        result['detail'] = result['success']
         result['success'] = success
         return result
