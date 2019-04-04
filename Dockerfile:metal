@@ -13,7 +13,7 @@ RUN sudo apt-get update \
     && pip2 install flask_httpauth \
     && pip2 install requests \
     && git -C /root/Ansible_Operator pull \
-    && /usr/bin/expect /root/Ansible_Operator/auto_ssh.sh root 123456 10.60.38.181 2331\
+    && /usr/bin/expect /root/Ansible_Operator/auto_ssh.sh root tongji409 10.60.38.181 20022\
     && chmod 777 ~/Ansible_Operator/run.sh
 
 
