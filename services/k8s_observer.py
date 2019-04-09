@@ -26,6 +26,15 @@ class K8sObserver(object):
         return K8sRepository.create_k8s_namespace_view_model(result)
 
     @staticmethod
+    def get_node():
+        r = Runner()
+        r.run_playbook(
+            playbooks=[K8sObserver.fetch_playbook_path('get_node.yaml')],
+        )
+        result = r.get_playbook_result()
+        return K8sRepository.create_k8s_node_view_model(result)
+
+    @staticmethod
     def get_svc(namespace):
         r = Runner()
         r.run_playbook(

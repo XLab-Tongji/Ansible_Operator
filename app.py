@@ -38,6 +38,12 @@ def get_namespace():
     return jsonify(K8sObserver.get_namespace())
 
 
+@app.route('/tool/api/v1.0/get_node', methods=['GET'])
+# @auth.login_required
+def get_node():
+    return jsonify(K8sObserver.get_node())
+
+
 @app.route('/tool/api/v1.0/get_svc/<namespace>', methods=['GET'])
 # @auth.login_required
 def get_svc(namespace):

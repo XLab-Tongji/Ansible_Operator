@@ -25,6 +25,26 @@ class K8sRepository(object):
         return result
 
     @staticmethod
+    def create_k8s_node_view_model(result):
+        success = []
+
+        try:
+            for each_host in result['success']:
+                for each_resource in result['success'][each_host.encode('raw_unicode_escape')]['resources']:
+                    temp = dict()
+                    temp['creationTimestamp'] = each_resource['metadata']['creationTimestamp']
+                    temp['labels'] = each_resource['metadata']['labels']['kubernetes.io/role']
+                    temp['name'] = each_resource['metadata']['name']
+                    temp['uid'] = each_resource['metadata']['uid']
+                    success.append(temp)
+        except:
+            success = {}
+
+        result['detail'] = result['success']
+        result['success'] = success
+        return result
+
+    @staticmethod
     def create_k8s_svc_view_model(result):
         success = []
 
