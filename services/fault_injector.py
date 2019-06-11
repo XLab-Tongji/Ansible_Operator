@@ -42,3 +42,14 @@ class FaultInjector(object):
         )
         result = r.get_adhoc_result()
         return result
+
+    @staticmethod
+    def chaosinject_cpu(dto):
+        r = Runner()
+        r.run_ad_hoc(
+            hosts=dto['host'],
+            module='shell',
+            args='blade create cpu fullload --timeout' + dto['inject_duration']
+        )
+        result = r.get_adhoc_result()
+        return result
