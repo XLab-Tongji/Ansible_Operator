@@ -8,7 +8,7 @@ RUN sudo apt-get update \
     && rm /etc/ansible/hosts \
     && cp ~/Ansible_Operator/hosts.metal /etc/ansible/hosts \
     && pip install --upgrade pip \
-    && pip2 install ansible \
+    && pip2 install ansible==2.7.10 \
     && pip2 install flask \
     && pip2 install flask_httpauth \
     && pip2 install requests \
