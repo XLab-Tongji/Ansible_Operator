@@ -7,13 +7,13 @@ set port [lindex $argv 3]
 spawn ssh-copy-id -f -i /root/.ssh/id_rsa.pub -p $port $username@$hostname
 expect {
     #first connect, no public key in ~/.ssh/known_hosts
-    "Are you sure you want to continue connecting (yes/no)?" {
+    "*(yes/no)?" {
         send "yes\r"
-        expect "password:"
+        expect "*assword:"
         send "$password\r"
         }
     #already has public key in ~/.ssh/known_hosts
-    "password:" {
+    "*assword:" {
         send "$password\r"
         }
     }
