@@ -16,8 +16,5 @@ expect {
     "password:" {
         send "$password\r"
         }
-    "Now try logging into the machine" {
-        #it has authorized, do nothing!
-        }
     }
 expect eof
