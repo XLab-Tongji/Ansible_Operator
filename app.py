@@ -92,22 +92,43 @@ def inject():
     else:
         return jsonify(FaultInjector.inject_io(dto))
 
-
+#metal random
 @app.route('/tool/api/v1.0/chaosblade/inject', methods=['POST'])
 def chaosinject():
-    if not request.json or not 'type' in request.json \
-            or not 'duration' in request.json \
-            or not 'host' in request.json:
+    if not request.json or not 'duration' in request.json:
         abort(400)
     dto = {
-        'type': request.json['type'],
-        'inject_duration': request.json['duration'],
-        'host': request.json['host']
+        #'type': request.json['type'],
+        'inject_duration': request.json['duration']
+        #'host': request.json['host']
     }
-    if dto['type'] == 'cpu':
-        return jsonify(FaultInjector.chaosinject_cpu(dto))
+    #if dto['type'] == 'cpu':
+    return jsonify(FaultInjector.chaosinject(dto))
+#test cpu 
+@app.route('/tool/api/v1.0/chaosblade1/inject', methods=['POST'])
+def chaosinject1():
+    if not request.json or not 'duration' in request.json:
+        abort(400)
+    dto = {
+        #'type': request.json['type'],
+        'inject_duration': request.json['duration']
+        #'host': request.json['host']
+    }
+    #if dto['type'] == 'cpu':
+    return jsonify(FaultInjector.chaosinject1(dto))
 
-
+#vm  random
+@app.route('/tool/api/v1.0/chaosbladevm/inject', methods=['POST'])
+def chaosinjectvm():
+    if not request.json or not 'duration' in request.json:
+        abort(400)
+    dto = {
+        #'type': request.json['type'],
+        'inject_duration': request.json['duration']
+        #'host': request.json['host']
+    }
+    #if dto['type'] == 'cpu':
+    return jsonify(FaultInjector.chaosinjectvm(dto))
 # ================
 #
 # @app.route('/todo/api/v1.0/tasks', methods=['GET'])

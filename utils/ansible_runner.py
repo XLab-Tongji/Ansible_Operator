@@ -109,7 +109,7 @@ class Runner(object):
     def run_ad_hoc(self, hosts=None,module=None, args=None, register=None):
         play_source = dict(
             name="Ansible Play ad-hoc",
-            hosts=hosts if hosts else 'all',
+            hosts=hosts,
             gather_facts='no',
             tasks=[
                 dict(action=dict(

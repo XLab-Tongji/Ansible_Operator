@@ -6,7 +6,7 @@ RUN sudo apt-get update \
     && git clone https://github.com/XLab-Tongji/Ansible_Operator.git ~/Ansible_Operator \
     && chmod 777 ~/Ansible_Operator/auto_ssh.sh \
     && rm /etc/ansible/hosts \
-    && cp ~/Ansible_Operator/hosts.metal /etc/ansible/hosts \
+    && cp ~/Ansible_Operator/hosts /etc/ansible/hosts \
     && pip install --upgrade pip \
     && pip2 install ansible==2.7.10 \
     && pip2 install flask \
